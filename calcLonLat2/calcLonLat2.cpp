@@ -1,5 +1,5 @@
 // calcLonLat2.cpp : Defines the entry point for the console application.
-//Õâ¸ö³ÌĞòÓÉÒÑÖª¹ßĞÔÏµµÄÔ­µãºÍÄ¿±êÔÚ¹ßĞÔÏµÏÂµÄ×ø±ê¼ÆËãÄ¿±êµÄ£Ç£Ğ£Ó¾­Î³¶È
+//è¿™ä¸ªç¨‹åºç”±å·²çŸ¥æƒ¯æ€§ç³»çš„åŸç‚¹å’Œç›®æ ‡åœ¨æƒ¯æ€§ç³»ä¸‹çš„åæ ‡è®¡ç®—ç›®æ ‡çš„ï¼§ï¼°ï¼³ç»çº¬åº¦
 
 #include "stdafx.h"
 #include "stdio.h"
@@ -8,7 +8,7 @@
 double a=6378137,b=6356752.3142;
 double af=a*a,bf=b*b;
 //double e2f=af/bf-1;
-double e1f=1-bf/af;	//0.00669438µÚÒ»ÆªĞÄÂÊµÄÆ½·½
+double e1f=1-bf/af;	//0.00669438ç¬¬ä¸€ç¯‡å¿ƒç‡çš„å¹³æ–¹
 
 double long_missle;
 double lat_missle;
@@ -34,7 +34,7 @@ double dzE,dxN;
 #define RADA 6378137.0
 #define RADB 6356752.3142
 
-/*/´óµØ×ø±êÏµµ½ECEF×ø±êµÄ×ª»»//GPSTo84
+/*/å¤§åœ°åæ ‡ç³»åˆ°ECEFåæ ‡çš„è½¬æ¢//GPSTo84
 void llhtoECEF(float lat,float lon,float h)
 {
 	float af,bf,ef,clat,slat,NN;
@@ -46,7 +46,7 @@ void llhtoECEF(float lat,float lon,float h)
 	slat = sin(lat);
 	NN = RADA/sqrt(1-ef*slat*slat);
 
-	//Êä³öECEF×ø±ê
+	//è¾“å‡ºECEFåæ ‡
 	ECEFX = (NN+h)*clat*cos(lon);
 	ECEFY = (NN+h)*clat*sin(lon);
 	ECEFZ = (NN*(1.0-ef)+h)*slat;
@@ -63,26 +63,26 @@ int main(int argc, char* argv[])
 	double slat,clat;
 	double lat1,dat2,lat3;
 	double long1,long2,long3;
-	ECEFX = 0.0;			//ECEF--µØÇò¹ÌÁª×ø±êÏµ
+	ECEFX = 0.0;			//ECEF--åœ°çƒå›ºè”åæ ‡ç³»
 	ECEFY = 0.0;
 	ECEFZ = 0.0;
 
-	//Ä¿±êÎ»ÖÃµÄ¹ßĞÔÏµ×ø±ê
+	//ç›®æ ‡ä½ç½®çš„æƒ¯æ€§ç³»åæ ‡
 	RRn[0] = 529.77;
 	RRn[1] = 0;
 	RRn[2] = 281.683;
-	//Ô­µãµÄ¾­Î³¶È
+	//åŸç‚¹çš„ç»çº¬åº¦
 	lat0 = 40.639722;
 	long0 = 100.4805556;
-	//ÕæÊµÂäµã×ø±ê
+	//çœŸå®è½ç‚¹åæ ‡
 	//Lat_ld = 40;
 	//Lon_ld = 100;
 	//Alt_ld= 22.2;
 
-	//¼ÆËã¹ßĞÔÏµºÍ´óµØ×ø±êÏµµÄ×ª»»¾ØÕó
-	//Õâ¸ö¾ØÕóÊÇ´ÓµØĞÄµ½µØÀíµÄ£¬Èç¹ûÒª´ÓµØÀíµ½µØĞÄĞèÒªÈ¡¾ØÕóµÄÄæ
-	//µ«ÊÇ¶ÔÓÚ×ª»»¾ØÕóÕâ¸öÕı½»¾ØÕóÀ´Ëµ£¬Äæ¾ÍÊÇËüµÄ×ªÖÃ£¬Òò´Ë¿ÉÒÔ
-	//¿´¼û¼ÆËãÊ½ÖĞËãÊ½Êµ¼ÊÊÇÈ¡µÃÕâ¸ö¾ØÕóµÄÄæ
+	//è®¡ç®—æƒ¯æ€§ç³»å’Œå¤§åœ°åæ ‡ç³»çš„è½¬æ¢çŸ©é˜µ
+	//è¿™ä¸ªçŸ©é˜µæ˜¯ä»åœ°å¿ƒåˆ°åœ°ç†çš„ï¼Œå¦‚æœè¦ä»åœ°ç†åˆ°åœ°å¿ƒéœ€è¦å–çŸ©é˜µçš„é€†
+	//ä½†æ˜¯å¯¹äºè½¬æ¢çŸ©é˜µè¿™ä¸ªæ­£äº¤çŸ©é˜µæ¥è¯´ï¼Œé€†å°±æ˜¯å®ƒçš„è½¬ç½®ï¼Œå› æ­¤å¯ä»¥
+	//çœ‹è§è®¡ç®—å¼ä¸­ç®—å¼å®é™…æ˜¯å–å¾—è¿™ä¸ªçŸ©é˜µçš„é€†
 	slat0 = sin(lat0/rad_to_deg);
 	clat0 = cos(lat0/rad_to_deg);
 	slong0 = sin(long0/rad_to_deg);
@@ -98,21 +98,21 @@ int main(int argc, char* argv[])
 	Cen[2][1] = clong0;
 	Cen[2][2] = 0;
 
-	//¼ÆËãÒÑÖªµã£¨Ô­µã£©ÔÚ´óµØ×ø±êÏµÖĞµÄ×ø±êR0e
+	//è®¡ç®—å·²çŸ¥ç‚¹ï¼ˆåŸç‚¹ï¼‰åœ¨å¤§åœ°åæ ‡ç³»ä¸­çš„åæ ‡R0e
 	N=a/sqrt(1-e1f*slat0*slat0);
 	R0e[0] = N*clat0*clong0;
 	R0e[1] = N*clat0*slong0;
 	R0e[2] = N*(1-e1f)*slat0;
-	//¼ÆËãÒª¼ÆËãµÄµãÔÚ´óµØ×ø±êÏµµÄ·ÖÁ¿RRe//¸Ã²½ÖèÊµ¼ÊÊÇ½«¹ßĞÔÏµ£¨µØÀíÏµ£©µã×ª»»ÎªµØĞÄÏµºó¼ÓÉÏÔ­µã×ø±ê
+	//è®¡ç®—è¦è®¡ç®—çš„ç‚¹åœ¨å¤§åœ°åæ ‡ç³»çš„åˆ†é‡RRe//è¯¥æ­¥éª¤å®é™…æ˜¯å°†æƒ¯æ€§ç³»ï¼ˆåœ°ç†ç³»ï¼‰ç‚¹è½¬æ¢ä¸ºåœ°å¿ƒç³»ååŠ ä¸ŠåŸç‚¹åæ ‡
 	RRe[0] = R0e[0]+(Cen[0][0]*RRn[0]+Cen[1][0]*RRn[1]+Cen[2][0]*RRn[2]);
 	RRe[1] = R0e[1]+(Cen[0][1]*RRn[0]+Cen[1][1]*RRn[1]+Cen[2][1]*RRn[2]);
 	RRe[2] = R0e[2]+(Cen[0][2]*RRn[0]+Cen[1][2]*RRn[1]+Cen[2][2]*RRn[2]);
 
-	//¸ù¾İRRe¼ÆËã¾­Î³¶È 84To£Ç£Ğ£Ó
+	//æ ¹æ®RReè®¡ç®—ç»çº¬åº¦ 84Toï¼§ï¼°ï¼³
 	double x = RRe[0],y=RRe[1],z=RRe[2];
-	long_missle=atan2(y,x);		//¼ÆËã¾­¶È
+	long_missle=atan2(y,x);		//è®¡ç®—ç»åº¦
 
-	//Ñ­»·¼ÆËãÎ³¶È
+	//å¾ªç¯è®¡ç®—çº¬åº¦
 	double p = sqrt(x*x+y*y);
 	N=a,h=12800;
 	for(i=0;i<8;i++)
@@ -124,10 +124,10 @@ int main(int argc, char* argv[])
 		N = a/sqrt(1-e1f*slat*slat);
 	}
 
-	//¼ÆËã½á¹ûÊä³ö
+	//è®¡ç®—ç»“æœè¾“å‡º
 	long_missle = long_missle*rad_to_deg;
 	lat_missle = lat_missle*rad_to_deg;
-	//°Ñ¾­Î³¶È×ª»»³É¶È·ÖÃë
+	//æŠŠç»çº¬åº¦è½¬æ¢æˆåº¦åˆ†ç§’
 	int long_missle1,long_missle2;
 	int lat_missle1,lat_missle2;
 	double long_missle3,lat_missle3,temp1;
@@ -153,7 +153,7 @@ int main(int argc, char* argv[])
 //	RX_ld=Cen[0][0]*(X_ld-PosX0)+Cen[0][1]*(Y_ld-PosY0)+Cen[0][2]*(Z_ld-PosZ0);
 //	RY_ld=Cen[1][0]*(X_ld-PosX0)+Cen[1][1]*(Y_ld-PosY0)+Cen[1][2]*(Z_ld-PosZ0);
 //	RZ_ld=Cen[2][0]*(X_ld-PosX0)+Cen[2][1]*(Y_ld-PosY0)+Cen[2][2]*(Z_ld-PosZ0);
-	//Ò£²âÂäµã×ø±ê
+	//é¥æµ‹è½ç‚¹åæ ‡
 //	llhtoECEF(lat_missle/rad_to_deg,long_missle/rad_to_deg,Alt_ld);
 //	X_m = ECEFX;
 //	Y_m = ECEFY;
@@ -162,17 +162,17 @@ int main(int argc, char* argv[])
 //	RY_m=Cen[1][0]*(X_m-PosX0)+Cen[1][1]*(Y_m-PosY0)+Cen[1][2]*(Z_m-PosZ0);
 //	RZ_m=Cen[2][0]*(X_m-PosX0)+Cen[2][1]*(Y_m-PosY0)+Cen[2][2]*(Z_m-PosZ0);
 
-	//¹ßĞÔÏµÁ½µã¼ä²î¾à
+	//æƒ¯æ€§ç³»ä¸¤ç‚¹é—´å·®è·
 //	dzE=RRn[2]-RZ_ld;
 //	dxN=RRn[0]-RX_ld;
 
-	printf("µ¼µ¯ÂäµãÎ³¶È=%lf¶È\n",lat_missle);
-	printf("µ¼µ¯Âäµã¾­¶È=%lf¶È\n\n\n",long_missle);
+	printf("è½ç‚¹çº¬åº¦=%lfåº¦\n",lat_missle);
+	printf("è½ç‚¹ç»åº¦=%lfåº¦\n\n\n",long_missle);
 
-	printf("µ¼µ¯ÂäµãÎ³¶È=%d¶È  %d·Ö  %dÃë\n",lat_missle1,lat_missle2,(int)lat_missle3);
-	printf("µ¼µ¯Âäµã¾­¶È=%d¶È  %d·Ö  %dÃë\n\n\n",long_missle1,long_missle2,(int)long_missle3);
+	printf("è½ç‚¹çº¬åº¦=%dåº¦  %dåˆ†  %dç§’\n",lat_missle1,lat_missle2,(int)lat_missle3);
+	printf("è½ç‚¹ç»åº¦=%dåº¦  %dåˆ†  %dç§’\n\n\n",long_missle1,long_missle2,(int)long_missle3);
 
-//	printf("±±ÏòÏà²î¾àÀë=%d",dxN);
-//	printf("¶«ÏòÏà²î¾àÀë=%d",dzE);
+//	printf("åŒ—å‘ç›¸å·®è·ç¦»=%d",dxN);
+//	printf("ä¸œå‘ç›¸å·®è·ç¦»=%d",dzE);
 	return 0;
 }
